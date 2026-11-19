@@ -1,0 +1,40 @@
+source:
+  type: postgres
+  serviceName: p17_picking
+  serviceConnection:
+    config:
+      type: Postgres
+      hostPort: ${PICKING_PG_HOST_PORT}
+      username: |-
+        ${PICKING_PG_USER}
+      authType:
+        password: |-
+          ${PICKING_PG_PASSWORD}
+      database: picking
+      ingestAllDatabases: false
+  sourceConfig:
+    config:
+      type: DatabaseMetadata
+      includeTables: true
+      includeViews: true
+      includeStoredProcedures: false
+      includeDDL: true
+      schemaFilterPattern:
+        includes: ['^picking$']
+      tableFilterPattern:
+        includes: ['^orders$', '^order_facts$']
+      overrideMetadata: false
+      markDeletedTables: false
+      markDeletedSchemas: false
+      markDeletedDatabases: false
+      markDeletedStoredProcedures: false
+sink:
+  type: metadata-rest
+  config: {}
+workflowConfig:
+  openMetadataServerConfig:
+    hostPort: ${OM_API_URL}
+    authProvider: openmetadata
+    securityConfig:
+      jwtToken: |-
+        ${OM_INGESTION_TOKEN}

@@ -1,0 +1,85 @@
+{
+  "note": "Fixtures copied or derived from two sibling learning projects. Copies are byte-identical to the source file at the commit; derived files are produced by stand/fixtures/build_data.py from the archived inputs named here.",
+  "copies": [
+    {
+      "project": "metabase-order-picking (P17)",
+      "commit": "d21a222b75b268f93eb6810394a193ba71f9fccd",
+      "source": "sql/postgres/001_orders.sql",
+      "file": "stand/fixtures/postgres/001_orders.sql",
+      "sha256": "78c0230920c86c07cb25b2117a7ac13e44b58d3bb8f73ae3990f1664d0af103c"
+    },
+    {
+      "project": "marketing-funnel-datalens (P16)",
+      "commit": "3d60450aac5fd18c22eddf241931220355eaa6b3",
+      "source": "sql/clickhouse/inputs.sql",
+      "file": "stand/fixtures/clickhouse/inputs.sql",
+      "sha256": "df1f7fac056b10b69a8b9fc06c4bfede70a98832ff9b4335c92f1c31b9f530c6"
+    },
+    {
+      "project": "marketing-funnel-datalens (P16)",
+      "commit": "3d60450aac5fd18c22eddf241931220355eaa6b3",
+      "source": "sql/clickhouse/attribution.sql",
+      "file": "stand/fixtures/clickhouse/attribution.sql",
+      "sha256": "c62b8d47e31c6d859e4bee0773eb7869705acb3dc604ac928427a4efed83aad5"
+    },
+    {
+      "project": "marketing-funnel-datalens (P16)",
+      "commit": "3d60450aac5fd18c22eddf241931220355eaa6b3",
+      "source": "sql/clickhouse/channel_metrics.sql",
+      "file": "stand/fixtures/clickhouse/channel_metrics.sql",
+      "sha256": "b16bf3d030fe0c788553a49f3af4e868d54092726c18bc731357659f9cf22c9e"
+    },
+    {
+      "project": "marketing-funnel-datalens (P16)",
+      "commit": "3d60450aac5fd18c22eddf241931220355eaa6b3",
+      "source": "sql/clickhouse/user_funnel.sql",
+      "file": "stand/fixtures/clickhouse/user_funnel.sql",
+      "sha256": "277b74fad74a71a1642bcc458e9cdac1c92c70b72e71b3eb917467e526c165e7"
+    }
+  ],
+  "derived": [
+    {
+      "project": "metabase-order-picking (P17)",
+      "commit": "d21a222b75b268f93eb6810394a193ba71f9fccd",
+      "source": "docs/runs/2026-10-31-synthetic/inputs.json",
+      "source_sha256": "2c5d2696cae22c7bca2cf0ca061aff173b7b06c433078632d72fc99a9d7b3bd1",
+      "rows": 200,
+      "file": "stand/fixtures/postgres/orders_data.sql",
+      "sha256": "2298bf57a246dd191715004fe1012a6fb1f01e7797f5015c4b5672790117f697"
+    },
+    {
+      "project": "marketing-funnel-datalens (P16)",
+      "commit": "3d60450aac5fd18c22eddf241931220355eaa6b3",
+      "source": "docs/runs/2026-10-31-synthetic/inputs.json",
+      "source_sha256": "11af0d9eae6b1bdb71083415356779a8d9cd3996082bfca71acb2167b14a9729",
+      "rows": 488,
+      "file": "stand/fixtures/clickhouse/events.jsonl",
+      "sha256": "f0f674381a198df78e8ec677f70171dae9787dbb76b4704d3523bb074aca83ae"
+    },
+    {
+      "project": "marketing-funnel-datalens (P16)",
+      "commit": "3d60450aac5fd18c22eddf241931220355eaa6b3",
+      "source": "docs/runs/2026-10-31-synthetic/inputs.json",
+      "source_sha256": "11af0d9eae6b1bdb71083415356779a8d9cd3996082bfca71acb2167b14a9729",
+      "rows": 4,
+      "file": "stand/fixtures/clickhouse/spend.jsonl",
+      "sha256": "c294ebf1477c21fd73cea599d8272f25ba276912a9963488f24407a7554169dd"
+    }
+  ],
+  "adapted": [
+    {
+      "project": "metabase-order-picking (P17)",
+      "commit": "d21a222b75b268f93eb6810394a193ba71f9fccd",
+      "source": "docker/postgres/010_roles.sh",
+      "file": "stand/fixtures/postgres/reader.sh",
+      "change": "only the read-only role and the picking schema; no BI application database"
+    },
+    {
+      "project": "marketing-funnel-datalens (P16)",
+      "commit": "3d60450aac5fd18c22eddf241931220355eaa6b3",
+      "source": "scripts/load_clickhouse.py",
+      "file": "stand/fixtures/clickhouse/init.sh",
+      "change": "same load order through clickhouse-client inside the container"
+    }
+  ]
+}

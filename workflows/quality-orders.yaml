@@ -1,0 +1,39 @@
+source:
+  type: TestSuite
+  serviceName: p17_picking
+  sourceConfig:
+    config:
+      type: TestSuite
+      entityFullyQualifiedName: p17_picking.picking.picking.orders
+      testCases: [order_quantities]
+processor:
+  type: orm-test-runner
+  config:
+    forceUpdate: true
+    testCases:
+      - name: order_quantities
+        description: Count orders with missing or inconsistent requested, picked, and error quantities.
+        testDefinitionName: tableCustomSQLQuery
+        parameterValues:
+          - name: sqlExpression
+            value: |-
+              SELECT count(*) FROM picking.orders
+              WHERE requested IS NULL OR picked IS NULL OR errors IS NULL
+                 OR requested <= 0 OR picked < 0 OR picked > requested
+                 OR errors < 0 OR errors > picked
+          - name: strategy
+            value: COUNT
+          - name: operator
+            value: '<='
+          - name: threshold
+            value: '0'
+sink:
+  type: metadata-rest
+  config: {}
+workflowConfig:
+  openMetadataServerConfig:
+    hostPort: ${OM_API_URL}
+    authProvider: openmetadata
+    securityConfig:
+      jwtToken: |-
+        ${OM_INGESTION_TOKEN}

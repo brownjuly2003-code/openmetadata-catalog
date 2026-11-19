@@ -1,0 +1,34 @@
+[
+  {
+    "fullyQualifiedName": "p17_picking.picking.picking.orders",
+    "columns": [
+      {"name": "order_id", "tags": [{"source": "Glossary", "state": "Confirmed", "tagFQN": "LabMetrics.PickingOrder"}]}
+    ],
+    "description": "Заказы на сборку по филиалам.",
+    "owners": [{"type": "team", "fullyQualifiedName": "p28_fulfillment"}],
+    "tags": [{"source": "Glossary", "state": "Confirmed", "tagFQN": "LabMetrics.PickingOrder"}]
+  },
+  {
+    "fullyQualifiedName": "p17_picking.picking.picking.order_facts",
+    "columns": [
+      {"name": "order_id", "tags": [{"source": "Glossary", "state": "Confirmed", "tagFQN": "LabMetrics.PickingOrder"}]},
+      {"name": "pick_seconds", "tags": [{"source": "Glossary", "state": "Suggested", "tagFQN": "LabMetrics.PickingDuration"}]}
+    ],
+    "description": "Длительности ожидания и сборки.",
+    "owners": [{"type": "team", "fullyQualifiedName": "p28_marketing"}],
+    "tags": [{"source": "Glossary", "state": "Suggested", "tagFQN": "LabMetrics.PickingDuration"}]
+  },
+  {
+    "fullyQualifiedName": "p16_marketing.default.marketing_jan.events",
+    "columns": [
+      {"name": "event_id", "tags": [{"source": "Classification", "state": "Confirmed", "tagFQN": "LabMetrics.MarketingEvent"}]}
+    ],
+    "description": "  ",
+    "owners": [{"type": "team", "fullyQualifiedName": "p28_marketing"}],
+    "tags": [{"source": "Classification", "state": "Confirmed", "tagFQN": "LabMetrics.MarketingEvent"}]
+  },
+  {
+    "fullyQualifiedName": "p16_marketing.default.marketing_jan.spend",
+    "deleted": true
+  }
+]

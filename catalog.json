@@ -1,0 +1,58 @@
+{
+  "teams": [
+    {"name": "p28_fulfillment", "displayName": "Учебная команда сборки заказов", "teamType": "Group"},
+    {"name": "p28_marketing", "displayName": "Учебная команда маркетинговой аналитики", "teamType": "Group"}
+  ],
+  "glossary": {
+    "name": "LabMetrics",
+    "displayName": "Метрики учебных проектов",
+    "description": "Значения терминов для заказов P17 и маркетинговой аналитики P16."
+  },
+  "terms": [
+    {"glossary": "LabMetrics", "name": "PickingOrder", "displayName": "Заказ на сборку", "description": "Заказ одного филиала с запрошенным количеством единиц и текущим статусом сборки."},
+    {"glossary": "LabMetrics", "name": "PickingDuration", "displayName": "Время сборки", "description": "Число секунд между началом и завершением сборки заказа. Для незавершённого заказа значение отсутствует."},
+    {"glossary": "LabMetrics", "name": "MarketingEvent", "displayName": "Маркетинговое событие", "description": "Действие пользователя с идентификатором и временем UTC, например показ, клик или подписка."},
+    {"glossary": "LabMetrics", "name": "ChannelSpend", "displayName": "Расходы канала", "description": "Сумма рекламных расходов по каналу за весь период учебного снимка, в копейках."},
+    {"glossary": "LabMetrics", "name": "AttributionCredit", "displayName": "Доля подписки", "description": "Вес, присвоенный каналу в одной подписке выбранной моделью атрибуции."},
+    {"glossary": "LabMetrics", "name": "ChannelCPA", "displayName": "CPA канала", "description": "Расходы канала, делённые на сумму долей подписок в одной модели. При нулевом знаменателе значение отсутствует."},
+    {"glossary": "LabMetrics", "name": "FunnelStep", "displayName": "Шаг воронки", "description": "Этап последовательности от показа до подписки. На шаге считается число уникальных пользователей, достигших его после предыдущих шагов."}
+  ],
+  "objects": {
+    "p17_picking.picking.picking.orders": {
+      "column_terms": {"order_id": "LabMetrics.PickingOrder"},
+      "description": "Одна строка на заказ. Хранятся филиал, статус, время создания и сборки, запрошенные и собранные единицы, количество ошибок.",
+      "owner": "p28_fulfillment", "term": "LabMetrics.PickingOrder", "upstream": []
+    },
+    "p17_picking.picking.picking.order_facts": {
+      "column_terms": {"order_id": "LabMetrics.PickingOrder", "pick_seconds": "LabMetrics.PickingDuration"},
+      "description": "Представление с одной строкой на заказ, календарным днём создания в UTC, временем ожидания и временем сборки в секундах.",
+      "owner": "p28_fulfillment", "term": "LabMetrics.PickingDuration", "upstream": ["p17_picking.picking.picking.orders"]
+    },
+    "p16_marketing.default.marketing_jan.events": {
+      "column_terms": {"event_id": "LabMetrics.MarketingEvent"},
+      "description": "Одна строка на пользовательское событие. Время хранится в UTC, суммы выручки и себестоимости в копейках.",
+      "owner": "p28_marketing", "term": "LabMetrics.MarketingEvent", "upstream": []
+    },
+    "p16_marketing.default.marketing_jan.spend": {
+      "column_terms": {"spend_cents": "LabMetrics.ChannelSpend"},
+      "description": "Строки рекламных расходов по каналам за весь снимок. Значения в копейках складываются по каналу.",
+      "owner": "p28_marketing", "term": "LabMetrics.ChannelSpend", "upstream": []
+    },
+    "p16_marketing.default.marketing_jan.attribution": {
+      "column_terms": {"weight": "LabMetrics.AttributionCredit"},
+      "description": "Доля канала в подписке по выбранной модели с распределением выручки и себестоимости в копейках.",
+      "owner": "p28_marketing", "term": "LabMetrics.AttributionCredit", "upstream": ["p16_marketing.default.marketing_jan.events"]
+    },
+    "p16_marketing.default.marketing_jan.channel_metrics": {
+      "column_terms": {"spend_cents": "LabMetrics.ChannelSpend", "cpa_cents": "LabMetrics.ChannelCPA"},
+      "description": "Одна строка на модель и канал за весь снимок. Содержит доли подписок, расходы, выручку, себестоимость, CPA и маржу.",
+      "owner": "p28_marketing", "term": "LabMetrics.ChannelCPA",
+      "upstream": ["p16_marketing.default.marketing_jan.events", "p16_marketing.default.marketing_jan.spend", "p16_marketing.default.marketing_jan.attribution"]
+    },
+    "p16_marketing.default.marketing_jan.user_funnel": {
+      "column_terms": {"step": "LabMetrics.FunnelStep"},
+      "description": "Пять последовательных шагов воронки. В каждой строке указаны номер шага и число дошедших до него пользователей.",
+      "owner": "p28_marketing", "term": "LabMetrics.FunnelStep", "upstream": ["p16_marketing.default.marketing_jan.events"]
+    }
+  }
+}

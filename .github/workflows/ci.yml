@@ -1,0 +1,36 @@
+name: catalog
+on:
+  push:
+    paths-ignore: ['**.md']
+  pull_request:
+    paths-ignore: ['**.md']
+concurrency:
+  group: catalog-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  workflows:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python -m pip install 'pytest==9.1.1' 'ruff==0.15.22' 'PyYAML==6.0.3'
+      - run: python -m ruff check .
+      - run: python -m ruff format --check .
+      - run: python -m pytest -q tests/test_scope.py tests/test_completeness.py
+      - run: python -m pytest -q tests/test_stand.py tests/test_apply_catalog.py tests/test_stand_export.py
+      # Same extras as README and stand/run.sh: the bare package imports pytz without declaring it.
+      - run: python -m pip install 'openmetadata-ingestion[postgres,clickhouse]==2.0.8.0'
+      - run: python -m pytest -q tests/test_openmetadata.py
+  quality-sql:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python -m pip install 'pytest==9.1.1' 'PyYAML==6.0.3'
+      - run: python -m pytest -q tests/quality_sql_cases.py

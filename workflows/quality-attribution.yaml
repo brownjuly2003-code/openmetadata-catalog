@@ -1,0 +1,41 @@
+source:
+  type: TestSuite
+  serviceName: p16_marketing
+  sourceConfig:
+    config:
+      type: TestSuite
+      entityFullyQualifiedName: p16_marketing.default.marketing_jan.attribution
+      testCases: [credit_sum]
+processor:
+  type: orm-test-runner
+  config:
+    forceUpdate: true
+    testCases:
+      - name: credit_sum
+        description: Count conversion and model pairs with invalid weights or a credit total outside 1 +/- 1e-9; the Float64 sum gets a 1e-12 rounding margin, so both bounds are included.
+        testDefinitionName: tableCustomSQLQuery
+        parameterValues:
+          - name: sqlExpression
+            value: |-
+              SELECT count(*) FROM (
+                  SELECT conversion_id, model FROM marketing_jan.attribution
+                  GROUP BY conversion_id, model
+                  HAVING countIf(NOT isFinite(weight) OR weight <= 0 OR weight > 1) > 0
+                      OR abs(sum(weight) - 1) > 0.000000001 + 0.000000000001
+              ) AS invalid_groups
+          - name: strategy
+            value: COUNT
+          - name: operator
+            value: '<='
+          - name: threshold
+            value: '0'
+sink:
+  type: metadata-rest
+  config: {}
+workflowConfig:
+  openMetadataServerConfig:
+    hostPort: ${OM_API_URL}
+    authProvider: openmetadata
+    securityConfig:
+      jwtToken: |-
+        ${OM_INGESTION_TOKEN}

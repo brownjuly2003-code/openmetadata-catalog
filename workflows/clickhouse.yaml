@@ -1,0 +1,38 @@
+source:
+  type: clickhouse
+  serviceName: p16_marketing
+  serviceConnection:
+    config:
+      type: Clickhouse
+      hostPort: ${MARKETING_CH_HOST_PORT}
+      username: |-
+        ${MARKETING_CH_USER}
+      password: |-
+        ${MARKETING_CH_PASSWORD}
+      databaseSchema: marketing_jan
+  sourceConfig:
+    config:
+      type: DatabaseMetadata
+      includeTables: true
+      includeViews: false
+      includeStoredProcedures: false
+      includeDDL: true
+      schemaFilterPattern:
+        includes: ['^marketing_jan$']
+      tableFilterPattern:
+        includes: ['^events$', '^spend$', '^attribution$', '^channel_metrics$', '^user_funnel$']
+      overrideMetadata: false
+      markDeletedTables: false
+      markDeletedSchemas: false
+      markDeletedDatabases: false
+      markDeletedStoredProcedures: false
+sink:
+  type: metadata-rest
+  config: {}
+workflowConfig:
+  openMetadataServerConfig:
+    hostPort: ${OM_API_URL}
+    authProvider: openmetadata
+    securityConfig:
+      jwtToken: |-
+        ${OM_INGESTION_TOKEN}
