@@ -1,0 +1,18 @@
+{
+  "stamp": "2026-11-19T23:40:11Z",
+  "column_comment": "re-ingestion probe 2026-11-19T23:40:11Z",
+  "table_comment": "source comment 2026-11-19T23:40:11Z, must not replace the catalog text",
+  "columns": {
+    "p17_picking.picking.picking.orders": "order_id",
+    "p17_picking.picking.picking.order_facts": "order_id",
+    "p16_marketing.default.marketing_jan.events": "event_id",
+    "p16_marketing.default.marketing_jan.spend": "spend_cents",
+    "p16_marketing.default.marketing_jan.attribution": "weight",
+    "p16_marketing.default.marketing_jan.channel_metrics": "spend_cents",
+    "p16_marketing.default.marketing_jan.user_funnel": "step"
+  },
+  "sql": {
+    "postgres": "COMMENT ON TABLE picking.orders IS 'source comment 2026-11-19T23:40:11Z, must not replace the catalog text';\nCOMMENT ON COLUMN picking.orders.order_id IS 're-ingestion probe 2026-11-19T23:40:11Z';\nCOMMENT ON VIEW picking.order_facts IS 'source comment 2026-11-19T23:40:11Z, must not replace the catalog text';\nCOMMENT ON COLUMN picking.order_facts.order_id IS 're-ingestion probe 2026-11-19T23:40:11Z';\n",
+    "clickhouse": "ALTER TABLE marketing_jan.events MODIFY COMMENT 'source comment 2026-11-19T23:40:11Z, must not replace the catalog text';\nALTER TABLE marketing_jan.events COMMENT COLUMN event_id 're-ingestion probe 2026-11-19T23:40:11Z';\nALTER TABLE marketing_jan.spend MODIFY COMMENT 'source comment 2026-11-19T23:40:11Z, must not replace the catalog text';\nALTER TABLE marketing_jan.spend COMMENT COLUMN spend_cents 're-ingestion probe 2026-11-19T23:40:11Z';\nALTER TABLE marketing_jan.attribution MODIFY COMMENT 'source comment 2026-11-19T23:40:11Z, must not replace the catalog text';\nALTER TABLE marketing_jan.attribution COMMENT COLUMN weight 're-ingestion probe 2026-11-19T23:40:11Z';\nALTER TABLE marketing_jan.channel_metrics MODIFY COMMENT 'source comment 2026-11-19T23:40:11Z, must not replace the catalog text';\nALTER TABLE marketing_jan.channel_metrics COMMENT COLUMN spend_cents 're-ingestion probe 2026-11-19T23:40:11Z';\nALTER TABLE marketing_jan.user_funnel MODIFY COMMENT 'source comment 2026-11-19T23:40:11Z, must not replace the catalog text';\nALTER TABLE marketing_jan.user_funnel COMMENT COLUMN step 're-ingestion probe 2026-11-19T23:40:11Z';\n"
+  }
+}

@@ -1,0 +1,54 @@
+stand run: OpenMetadata 2.0.8 catalog stand
+started: 2026-11-19T23:40:11Z
+finished: 2026-11-19T23:46:36Z
+exit code: 0
+failed step: none
+
+steps (UTC start time, name):
+2026-11-19T23:40:11Z	1. resources
+2026-11-19T23:40:11Z	2. environment file
+2026-11-19T23:40:11Z	3. compose config and image pull
+2026-11-19T23:41:49Z	4. docker compose up --wait
+2026-11-19T23:43:51Z	5. ingestion client
+2026-11-19T23:45:27Z	6. [REDACTED] login and ingestion bot token
+2026-11-19T23:45:28Z	7. ingestion of both sources
+2026-11-19T23:45:45Z	8. export before the catalog
+2026-11-19T23:45:45Z	9. apply catalog.json twice
+2026-11-19T23:45:51Z	10. repeated ingestion and export after
+2026-11-19T23:46:07Z	11. quality checks
+2026-11-19T23:46:33Z	12. verify
+2026-11-19T23:46:34Z	13. docker stats
+
+checks (stand/out/verify.json):
+PASS ingestion found all catalog tables: before_completeness.json present=7 of 7
+PASS order_facts ingested as a view: tableType=View
+PASS second apply changed nothing: apply_2.json changes=0
+PASS second ingestion reached every catalog table: probe column comment in after_tables.json, not in applied_tables.json: 7 of 7; missing=[]
+PASS re-ingestion kept the applied metadata: applied_tables.json vs after_tables.json: description, owners, glossary labels; differing=[]
+PASS all objects complete after re-ingestion: after_completeness.json complete=7 of 7
+PASS all column terms confirmed after re-ingestion: confirmed=9 of 9
+PASS descriptions equal catalog.json: differing=[]
+PASS lineage edges from catalog.json present: 6 of 6; missing=[]
+PASS quality order_quantities passed on clean data: status=Success values={'resultRowCount': '0'}
+PASS quality credit_sum passed on clean data: status=Success values={'resultRowCount': '0'}
+PASS quality credit_sum failed on one broken group: status=Failed values={'resultRowCount': '1'}
+
+--- resources.txt
+cpus: 4
+               total        used        free      shared  buff/cache   available
+Mem:              15           1           0           0          14          14
+Swap:              0           0           0
+Filesystem      Size  Used Avail Use% Mounted on
+/dev/loop4       32G  1.6G   29G   6% /workspaces
+docker server 29.9.3-1
+Docker Compose version v5.8.0
+Python 3.11.18
+free disk for docker (/var/lib/docker): 28 GB, memory: 15 GB
+
+--- docker-stats.txt
+CONTAINER ID   NAME                                               CPU %     MEM USAGE / LIMIT     MEM %     NET I/O           BLOCK I/O        PIDS
+06ccbd1206e5   openmetadata-catalog-stand-openmetadata-server-1   15.28%    1.131GiB / 15.62GiB   7.24%     5.72MB / 7.51MB   140MB / 1.9MB    229
+a1070cb1e8ac   openmetadata-catalog-stand-source-postgres-1       0.01%     60.45MiB / 15.62GiB   0.38%     95.1kB / 43.6kB   93.7MB / 101MB   6
+9642c271d78b   openmetadata-catalog-stand-postgresql-1            2.15%     172.2MiB / 15.62GiB   1.08%     11.1MB / 7.27MB   80.3MB / 701MB   40
+a176edce0d94   openmetadata-catalog-stand-source-clickhouse-1     3.15%     588.1MiB / 15.62GiB   3.68%     58.7kB / 121kB    697MB / 23.5MB   677
+28fa0877018b   openmetadata-catalog-stand-elasticsearch-1         1.10%     1.604GiB / 15.62GiB   10.27%    1.02MB / 401kB    252MB / 65.9MB   121

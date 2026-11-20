@@ -1,0 +1,28 @@
+{
+  "edges": [
+    [
+      "p16_marketing.default.marketing_jan.attribution",
+      "p16_marketing.default.marketing_jan.channel_metrics"
+    ],
+    [
+      "p16_marketing.default.marketing_jan.events",
+      "p16_marketing.default.marketing_jan.attribution"
+    ],
+    [
+      "p16_marketing.default.marketing_jan.events",
+      "p16_marketing.default.marketing_jan.channel_metrics"
+    ],
+    [
+      "p16_marketing.default.marketing_jan.events",
+      "p16_marketing.default.marketing_jan.user_funnel"
+    ],
+    [
+      "p16_marketing.default.marketing_jan.spend",
+      "p16_marketing.default.marketing_jan.channel_metrics"
+    ],
+    [
+      "p17_picking.picking.picking.orders",
+      "p17_picking.picking.picking.order_facts"
+    ]
+  ]
+}

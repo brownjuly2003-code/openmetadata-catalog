@@ -1,0 +1,94 @@
+{
+  "teams": {
+    "p28_fulfillment": "created",
+    "p28_marketing": "created"
+  },
+  "glossary": {
+    "LabMetrics": "created"
+  },
+  "terms": {
+    "LabMetrics.PickingOrder": "created",
+    "LabMetrics.PickingDuration": "created",
+    "LabMetrics.MarketingEvent": "created",
+    "LabMetrics.ChannelSpend": "created",
+    "LabMetrics.AttributionCredit": "created",
+    "LabMetrics.ChannelCPA": "created",
+    "LabMetrics.FunnelStep": "created"
+  },
+  "tables": {
+    "p17_picking.picking.picking.orders": [
+      "/description",
+      "/owners",
+      "/tags/-",
+      "/columns/0/tags/-"
+    ],
+    "p17_picking.picking.picking.order_facts": [
+      "/description",
+      "/owners",
+      "/tags/-",
+      "/columns/0/tags/-",
+      "/columns/8/tags/-"
+    ],
+    "p16_marketing.default.marketing_jan.events": [
+      "/description",
+      "/owners",
+      "/tags/-",
+      "/columns/0/tags/-"
+    ],
+    "p16_marketing.default.marketing_jan.spend": [
+      "/description",
+      "/owners",
+      "/tags/-",
+      "/columns/1/tags/-"
+    ],
+    "p16_marketing.default.marketing_jan.attribution": [
+      "/description",
+      "/owners",
+      "/tags/-",
+      "/columns/4/tags/-"
+    ],
+    "p16_marketing.default.marketing_jan.channel_metrics": [
+      "/description",
+      "/owners",
+      "/tags/-",
+      "/columns/5/tags/-",
+      "/columns/6/tags/-"
+    ],
+    "p16_marketing.default.marketing_jan.user_funnel": [
+      "/description",
+      "/owners",
+      "/tags/-",
+      "/columns/1/tags/-"
+    ]
+  },
+  "lineage": {
+    "added": [
+      [
+        "p17_picking.picking.picking.orders",
+        "p17_picking.picking.picking.order_facts"
+      ],
+      [
+        "p16_marketing.default.marketing_jan.events",
+        "p16_marketing.default.marketing_jan.attribution"
+      ],
+      [
+        "p16_marketing.default.marketing_jan.events",
+        "p16_marketing.default.marketing_jan.channel_metrics"
+      ],
+      [
+        "p16_marketing.default.marketing_jan.spend",
+        "p16_marketing.default.marketing_jan.channel_metrics"
+      ],
+      [
+        "p16_marketing.default.marketing_jan.attribution",
+        "p16_marketing.default.marketing_jan.channel_metrics"
+      ],
+      [
+        "p16_marketing.default.marketing_jan.events",
+        "p16_marketing.default.marketing_jan.user_funnel"
+      ]
+    ],
+    "present": []
+  },
+  "changes": 23
+}

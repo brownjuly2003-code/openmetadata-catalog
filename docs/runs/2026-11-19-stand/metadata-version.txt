@@ -1,0 +1,2 @@
+metadata 2.0.8.0 from /workspaces/openmetadata-
+catalog/stand/.venv/lib/python3.11 (python 3.11)

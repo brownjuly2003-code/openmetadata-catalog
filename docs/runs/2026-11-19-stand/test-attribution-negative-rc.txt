@@ -1,0 +1,1 @@
+metadata test exit code on the broken data: 0

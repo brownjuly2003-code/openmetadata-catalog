@@ -1,0 +1,48 @@
+{
+  "expected": 7,
+  "counts": {
+    "present": 7,
+    "description": 7,
+    "owner": 7,
+    "glossary": 7,
+    "complete": 7
+  },
+  "objects": {
+    "p17_picking.picking.picking.orders": [],
+    "p17_picking.picking.picking.order_facts": [],
+    "p16_marketing.default.marketing_jan.events": [],
+    "p16_marketing.default.marketing_jan.spend": [],
+    "p16_marketing.default.marketing_jan.attribution": [],
+    "p16_marketing.default.marketing_jan.channel_metrics": [],
+    "p16_marketing.default.marketing_jan.user_funnel": []
+  },
+  "column_terms": {
+    "expected": 9,
+    "confirmed": 9,
+    "objects": {
+      "p17_picking.picking.picking.orders": {
+        "order_id": "confirmed"
+      },
+      "p17_picking.picking.picking.order_facts": {
+        "order_id": "confirmed",
+        "pick_seconds": "confirmed"
+      },
+      "p16_marketing.default.marketing_jan.events": {
+        "event_id": "confirmed"
+      },
+      "p16_marketing.default.marketing_jan.spend": {
+        "spend_cents": "confirmed"
+      },
+      "p16_marketing.default.marketing_jan.attribution": {
+        "weight": "confirmed"
+      },
+      "p16_marketing.default.marketing_jan.channel_metrics": {
+        "spend_cents": "confirmed",
+        "cpa_cents": "confirmed"
+      },
+      "p16_marketing.default.marketing_jan.user_funnel": {
+        "step": "confirmed"
+      }
+    }
+  }
+}

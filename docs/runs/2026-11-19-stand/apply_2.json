@@ -1,0 +1,57 @@
+{
+  "teams": {
+    "p28_fulfillment": "unchanged",
+    "p28_marketing": "unchanged"
+  },
+  "glossary": {
+    "LabMetrics": "unchanged"
+  },
+  "terms": {
+    "LabMetrics.PickingOrder": "unchanged",
+    "LabMetrics.PickingDuration": "unchanged",
+    "LabMetrics.MarketingEvent": "unchanged",
+    "LabMetrics.ChannelSpend": "unchanged",
+    "LabMetrics.AttributionCredit": "unchanged",
+    "LabMetrics.ChannelCPA": "unchanged",
+    "LabMetrics.FunnelStep": "unchanged"
+  },
+  "tables": {
+    "p17_picking.picking.picking.orders": [],
+    "p17_picking.picking.picking.order_facts": [],
+    "p16_marketing.default.marketing_jan.events": [],
+    "p16_marketing.default.marketing_jan.spend": [],
+    "p16_marketing.default.marketing_jan.attribution": [],
+    "p16_marketing.default.marketing_jan.channel_metrics": [],
+    "p16_marketing.default.marketing_jan.user_funnel": []
+  },
+  "lineage": {
+    "added": [],
+    "present": [
+      [
+        "p17_picking.picking.picking.orders",
+        "p17_picking.picking.picking.order_facts"
+      ],
+      [
+        "p16_marketing.default.marketing_jan.events",
+        "p16_marketing.default.marketing_jan.attribution"
+      ],
+      [
+        "p16_marketing.default.marketing_jan.events",
+        "p16_marketing.default.marketing_jan.channel_metrics"
+      ],
+      [
+        "p16_marketing.default.marketing_jan.spend",
+        "p16_marketing.default.marketing_jan.channel_metrics"
+      ],
+      [
+        "p16_marketing.default.marketing_jan.attribution",
+        "p16_marketing.default.marketing_jan.channel_metrics"
+      ],
+      [
+        "p16_marketing.default.marketing_jan.events",
+        "p16_marketing.default.marketing_jan.user_funnel"
+      ]
+    ]
+  },
+  "changes": 0
+}

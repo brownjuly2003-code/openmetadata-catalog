@@ -1,0 +1,20 @@
+{
+  "order_quantities": {
+    "table": "p17_picking.picking.picking.orders",
+    "fullyQualifiedName": "p17_picking.picking.picking.orders.order_quantities",
+    "status": "Success",
+    "values": {
+      "resultRowCount": "0"
+    },
+    "result": "Found 0 row(s). Test query is expected to return <= 0 row(s)."
+  },
+  "credit_sum": {
+    "table": "p16_marketing.default.marketing_jan.attribution",
+    "fullyQualifiedName": "p16_marketing.default.marketing_jan.attribution.credit_sum",
+    "status": "Failed",
+    "values": {
+      "resultRowCount": "1"
+    },
+    "result": "Found 1 row(s). Test query is expected to return <= 0 row(s)."
+  }
+}

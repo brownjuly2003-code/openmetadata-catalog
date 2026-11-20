@@ -1,0 +1,65 @@
+{
+  "ok": true,
+  "checks": [
+    {
+      "check": "ingestion found all catalog tables",
+      "ok": true,
+      "detail": "before_completeness.json present=7 of 7"
+    },
+    {
+      "check": "order_facts ingested as a view",
+      "ok": true,
+      "detail": "tableType=View"
+    },
+    {
+      "check": "second apply changed nothing",
+      "ok": true,
+      "detail": "apply_2.json changes=0"
+    },
+    {
+      "check": "second ingestion reached every catalog table",
+      "ok": true,
+      "detail": "probe column comment in after_tables.json, not in applied_tables.json: 7 of 7; missing=[]"
+    },
+    {
+      "check": "re-ingestion kept the applied metadata",
+      "ok": true,
+      "detail": "applied_tables.json vs after_tables.json: description, owners, glossary labels; differing=[]"
+    },
+    {
+      "check": "all objects complete after re-ingestion",
+      "ok": true,
+      "detail": "after_completeness.json complete=7 of 7"
+    },
+    {
+      "check": "all column terms confirmed after re-ingestion",
+      "ok": true,
+      "detail": "confirmed=9 of 9"
+    },
+    {
+      "check": "descriptions equal catalog.json",
+      "ok": true,
+      "detail": "differing=[]"
+    },
+    {
+      "check": "lineage edges from catalog.json present",
+      "ok": true,
+      "detail": "6 of 6; missing=[]"
+    },
+    {
+      "check": "quality order_quantities passed on clean data",
+      "ok": true,
+      "detail": "status=Success values={'resultRowCount': '0'}"
+    },
+    {
+      "check": "quality credit_sum passed on clean data",
+      "ok": true,
+      "detail": "status=Success values={'resultRowCount': '0'}"
+    },
+    {
+      "check": "quality credit_sum failed on one broken group",
+      "ok": true,
+      "detail": "status=Failed values={'resultRowCount': '1'}"
+    }
+  ]
+}

@@ -1,0 +1,3 @@
+Filesystem      Size  Used Avail Use% Mounted on
+/dev/loop4       32G  7.3G   23G  25% /var/lib/docker
+/dev/loop4       32G  7.3G   23G  25% /workspaces
